@@ -107,8 +107,8 @@ https://doi.org/10.5281/zenodo.17875100
 ---
 ## Contact
 
-Nurmalia (Lia) Adroli
-PhD Candidate, Earth Science
-Remote Sensing of Ocean Biogeochemistry
-Research School of Earth Sciences
-The Australian National University https://orcid.org/0009-0000-2982-1900
+Nurmalia (Lia) Adroli  
+PhD Candidate, Earth Science  
+Remote Sensing of Ocean Biogeochemistry  
+Research School of Earth Sciences  
+The Australian National University https://orcid.org/0009-0000-2982-1900  
