@@ -1,5 +1,5 @@
-function model = train_psc_pft_model(T_train, K)
-% TRAIN_PSC_PFT_MODEL
+function model = train_model(T_train, K)
+% TRAIN_MODEL
 %   Train NNLS + GBM model with K-fold cross-validation and construct
 %   PSC/PFT fractions and a bin-based empirical model.
 %
