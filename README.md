@@ -4,15 +4,14 @@ This repository contains the full data processing, model training, validation, a
 
 ## Approach
 The approach integrates:
-1. HPLC pigment observations (SeaBASS + Hayward 2024)
-2. Satellite chlorophyll from the Ocean Colour Climate Change Initiative (OC-CCI) Level-3 daily
-3. NNLS pigment linear mixing
-4. Gradient Boosting Machine (GBM) regression
-5. Bin-based empirical reconstruction
-6. Independent OC-CCI-based validation
+1. HPLC pigment observations (SeaBASS + Hayward 2024)  
+2. Satellite chlorophyll from the Ocean Colour Climate Change Initiative (OC-CCI) Level-3 daily  
+3. NNLS pigment linear mixing to derive ecologically constrained pigment contributions  
+4. Gradient Boosting Machine (GBM) regression with K-fold cross-validation for total chlorophyll (Tchla) reconstruction  
+5. Bin-based empirical reconstruction of PSCs and PFTs as functions of log₁₀(Tchla)  
+6. Independent OC-CCI-based validation using the bin model applied to satellite chlorophyll
 
 ---
-
 ### Core Variables
 
 | Variable | Description |
@@ -21,7 +20,6 @@ The approach integrates:
 | `OCChla` | Satellite chlorophyll from Ocean Colour Climate Change Initiative (OC-CCI), mg m⁻³ |
 
 ---
-
 ### Pigment Variables (8)
 
 | Abbreviation | Full Name |
@@ -36,7 +34,6 @@ The approach integrates:
 | DVChla   | Divinyl Chlorophyll a |
 
 ---
-
 ### Metadata
 
 - `lat`, `lon` — geographic coordinates  
@@ -46,7 +43,6 @@ The approach integrates:
   - For **AlexiHayw (2024)**, only the citation is used as the data source. Detailed cruise or time metadata should be obtained directly from the original Hayward (2024) reference.
 
 ---
-
 ### Spatial–Temporal Coverage
 
 - **Region:** Southern Ocean (40–90°S, 180°W–180°E)  
@@ -54,7 +50,6 @@ The approach integrates:
 - **Period:** 1998–2024  
 
 ---
-
 ## Data Processing Workflow (Analysis Code Only)
 
 1. **Initial Data Filtering**
@@ -69,30 +64,39 @@ The approach integrates:
    - Linear diagnostic pigment sum (DP_lin)
 
 4. **GBM Total Chlorophyll Reconstruction**
-   - Input features:
-     - Raw pigments  
-     - Log-transformed pigments  
-     - DP_lin and log(DP_lin)
+- Input features:
+  - Raw pigments
+  - Log-transformed pigments
+  - `DP_lin` and `log(DP_lin)`
+- Gradient Boosting Machine (GBM) regression
+- **K-fold cross-validation (default K = 5)** applied to the training set to obtain out-of-fold predictions of Tchla and robust skill metrics (r, R², RMSE)
 
 5. **GBM-Anchored PSC & PFT Fractions**
+- GBM-derived total chlorophyll (`Tchla_GBM`) used as the denominator
+- NNLS pigment contributions converted to:
+  - Phytoplankton size classes (PSC: micro, nano, pico)
+  - Phytoplankton functional types (PFT: diatoms, dinoflagellates, prymnesiophytes, cryptophytes, Prok+Prochlorococcus, PicoEuk+Green)
+- Fractions constrained to 0–1 and then expressed as concentrations (mg m⁻³)
 
-6. **Bin-Based Empirical Model**
-   - 100 log-spaced chlorophyll bins
-   - 4th-degree polynomial fits
-   - Weighted by bin population
+6.  **Bin-Based Empirical Model**
+- 100 log-spaced Tchla bins
+- For each PSC/PFT:
+  - Mean and standard deviation of fractional contribution (% of total) computed per bin
+  - 4th-degree polynomial fits of PSC/PFT (%) as a function of log₁₀(Tchla)
+  - Fits weighted by bin population (weighted R², r, and approximate p-values)
 
 7. **Independent OC-CCI Validation**
-   - Apply bin model to satellite chlorophyll
-   - Compare against GBM-derived PSC/PFT
----
+- Reconstructed PSC and PFT concentrations from OCChla compared against GBM-derived PSC/PFT for the independent validation subset
+- Bin-model polynomial relationships applied to satellite OC-CCI chlorophyll (OCChla)
 
+---
 ## Software Requirements
 
 - MATLAB R2024a or newer  
 - Statistics and Machine Learning Toolbox  
 - Optimization Toolbox  
----
 
+---
 ## Data Source and DOI
 
 The full dataset associated with this repository is archived at:
@@ -101,7 +105,6 @@ The full dataset associated with this repository is archived at:
 https://doi.org/10.5281/zenodo.17875100
 
 ---
-
 ## Contact
 
 **Nurmalia Adroli**  
