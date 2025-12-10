@@ -4,7 +4,7 @@ function stats = validate_model(T_val, model)
 %   versus GBM+NNLS-derived PSC/PFT concentrations on the validation subset.
 %
 % Inputs:
-%   T_val - validation table from prepare_so_matchups (30% per year)
+%   T_val - validation table from so_matchup (≈30% per year)
 %   model - struct from train_model (contains nnlsCoeff, gbmFull, binModel)
 %
 % Output:
