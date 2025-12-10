@@ -97,14 +97,6 @@ The approach integrates:
 - Optimization Toolbox  
 
 ---
-## Data Source and DOI
-
-The full dataset associated with this repository is archived at:
-
-**Zenodo DOI:**  
-https://doi.org/10.5281/zenodo.17875100
-
----
 ## Citation
 
 If you use this code or dataset, please cite:
