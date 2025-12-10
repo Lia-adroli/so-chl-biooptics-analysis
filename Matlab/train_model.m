@@ -1,11 +1,12 @@
-function model = train_model(T_train, K)
+function model = train_model(T_train, K, nbin)
 % TRAIN_MODEL
 %   Train NNLS + GBM model with K-fold cross-validation and construct
 %   PSC/PFT fractions and a bin-based empirical model.
 %
 % Inputs:
-%   T_train - table from so_matchups (training subset)
+%   T_train - table from so_matchup (training subset)
 %   K       - number of folds for K-fold CV (default 5)
+%   nbin    - number of log-spaced chlorophyll bins for bin_model (default 100)
 %
 % Output:
 %   model   - struct containing:
@@ -14,6 +15,7 @@ function model = train_model(T_train, K)
 %       .P             - pigment matrix [N x 8]
 %       .nnlsCoeff     - NNLS pigment coefficients [8 x 1]
 %       .TChla_cv      - K-fold cross-validated GBM predictions
+%       .TChla_gbm     - GBM predictions from final model (all samples)
 %       .gbmFull       - GBM model trained on all filtered samples
 %       .PSC           - struct of PSC fractions (0–1)
 %       .PFT           - struct of PFT fractions (0–1)
@@ -21,6 +23,9 @@ function model = train_model(T_train, K)
 
     if nargin < 2 || isempty(K)
         K = 5;   % default K-fold
+    end
+    if nargin < 3 || isempty(nbin)
+        nbin = 100;   % default number of bins
     end
 
     % -------------------- Basic checks --------------------
@@ -103,8 +108,11 @@ function model = train_model(T_train, K)
                            'LearnRate', 0.02, ...
                            'FResample', 0.6);
 
+    TChla_gbm = predict(gbmFull, Xfeat);
+
     % -------------------- PSC/PFT fractions (GBM-anchored) -------------
-    Tg = max(TChla_cv, 1e-12);                 % out-of-fold GBM total
+    % Use final GBM total (TChla_gbm) to anchor fractions
+    Tg = max(TChla_gbm, 1e-12);
     pct_raw = 100 * contrib ./ Tg;             % % of GBM total
     row_sum = sum(pct_raw, 2);
     row_sum(row_sum <= 0) = 1e-12;
@@ -149,37 +157,38 @@ function model = train_model(T_train, K)
 
     % -------------------- Build bin-based empirical model --------------
     fracStruct = struct();
-    fracStruct.PSC_micro       = PSC_micro;
-    fracStruct.PSC_nano        = PSC_nano;
-    fracStruct.PSC_pico        = PSC_pico;
-    fracStruct.PFT_diatoms     = PFT_diatoms;
-    fracStruct.PFT_dino        = PFT_dino;
-    fracStruct.PFT_prym        = PFT_prym;
-    fracStruct.PFT_cryptophytes= PFT_cryptophytes;
-    fracStruct.PFT_prok_all    = PFT_prok_all;
-    fracStruct.PFT_picoeukGreen= PFT_picoeukGreen;
+    fracStruct.PSC_micro        = PSC_micro;
+    fracStruct.PSC_nano         = PSC_nano;
+    fracStruct.PSC_pico         = PSC_pico;
+    fracStruct.PFT_diatoms      = PFT_diatoms;
+    fracStruct.PFT_dino         = PFT_dino;
+    fracStruct.PFT_prym         = PFT_prym;
+    fracStruct.PFT_cryptophytes = PFT_cryptophytes;
+    fracStruct.PFT_prok_all     = PFT_prok_all;
+    fracStruct.PFT_picoeukGreen = PFT_picoeukGreen;
 
-    binModel = bin_model(Tchla, fracStruct, 100);
+    binModel = bin_model(Tchla, fracStruct, nbin);
 
     % -------------------- Pack output struct ---------------------------
     model = struct();
-    model.Ttrain    = T_use;
-    model.Tchla     = Tchla;
-    model.P         = P;
-    model.nnlsCoeff = nnlsCoeff;
-    model.TChla_cv  = TChla_cv;
-    model.gbmFull   = gbmFull;
+    model.Ttrain     = T_use;
+    model.Tchla      = Tchla;
+    model.P          = P;
+    model.nnlsCoeff  = nnlsCoeff;
+    model.TChla_cv   = TChla_cv;
+    model.TChla_gbm  = TChla_gbm;
+    model.gbmFull    = gbmFull;
 
     model.PSC = struct('micro',PSC_micro, ...
                        'nano', PSC_nano, ...
                        'pico', PSC_pico);
 
-    model.PFT = struct('diatoms',     PFT_diatoms, ...
-                       'dino',        PFT_dino, ...
-                       'prym',        PFT_prym, ...
-                       'cryptophytes',PFT_cryptophytes, ...
-                       'prok_all',    PFT_prok_all, ...
-                       'picoeukGreen',PFT_picoeukGreen);
+    model.PFT = struct('diatoms',      PFT_diatoms, ...
+                       'dino',         PFT_dino, ...
+                       'prym',         PFT_prym, ...
+                       'cryptophytes', PFT_cryptophytes, ...
+                       'prok_all',     PFT_prok_all, ...
+                       'picoeukGreen', PFT_picoeukGreen);
 
     model.binModel = binModel;
 end
