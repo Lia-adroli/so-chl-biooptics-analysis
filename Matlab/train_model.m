@@ -159,7 +159,7 @@ function model = train_model(T_train, K)
     fracStruct.PFT_prok_all    = PFT_prok_all;
     fracStruct.PFT_picoeukGreen= PFT_picoeukGreen;
 
-    binModel = build_bin_model_from_training(Tchla, fracStruct, 100);
+    binModel = bin_model(Tchla, fracStruct, 100);
 
     % -------------------- Pack output struct ---------------------------
     model = struct();
