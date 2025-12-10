@@ -105,6 +105,15 @@ The full dataset associated with this repository is archived at:
 https://doi.org/10.5281/zenodo.17875100
 
 ---
+## Citation
+
+If you use this code or dataset, please cite:
+
+Adroli, N., Hayward, A., Strutton, P., & Ellwood, M. (2025).
+*Southern Ocean phytoplankton functional types and size-class diversity, phenology, and ecosystem regime shifts from ocean colour and abundance-based diagnostics (1998–2024).*  
+Zenodo. https://doi.org/10.5281/zenodo.17875100
+
+---
 ## Contact
 
 Nurmalia (Lia) Adroli  
