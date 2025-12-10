@@ -7,23 +7,13 @@ date-released: 2025-12-10
 
 authors:
   - name: Nurmalia Adroli
-    affiliation: 1, 3
+    affiliation: "Australian National University; The Australian Centre for Excellence in Antarctic Science"
   - name: Alexander Hayward
-    affiliation: 2
+    affiliation: "Danish Meteorological Institute"
   - name: Peter Strutton
-    affiliation: 4, 3
+    affiliation: "Institute for Marine and Antarctic Studies, University of Tasmania; The Australian Centre for Excellence in Antarctic Science"
   - name: Michael Ellwood
-    affiliation: 1, 3
-
-affiliations:
-  - id: 1
-    name: Australian National University
-  - id: 2
-    name: Danish Meteorological Institute
-  - id: 3
-    name: The Australian Centre for Excellence in Antarctic Science
-  - id: 4
-    name: Institute for Marine and Antarctic Studies, University of Tasmania
+    affiliation: "Australian National University; The Australian Centre for Excellence in Antarctic Science"
 
 repository-code: "https://github.com/Lia-adroli/so-chl-biooptics-analysis"
 
@@ -41,6 +31,7 @@ keywords:
 
 license: MIT
 
-notes:
-"Parts of the code structuring and debugging were supported by a large language model (ChatGPT, OpenAI). 
-All scientific decisions, data analysis, and validation were conducted and verified by the authors."
+notes: >
+  Parts of the code structuring and debugging were supported by a large language
+  model (ChatGPT, OpenAI). All scientific decisions, data analysis, and validation
+  were conducted and verified by the authors.
