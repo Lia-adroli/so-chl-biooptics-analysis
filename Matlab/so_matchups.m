@@ -1,5 +1,5 @@
-function [T_train, T_val] = prepare_so_matchups(csvFile, relErrMax, trainFrac)
-% PREPARE_SO_MATCHUPS
+function [T_train, T_val] = so_matchups(csvFile, relErrMax, trainFrac)
+% SO_MATCHUPS
 %   Load matchup CSV, filter by relative error between OCChla and Tchla,
 %   and perform a year-stratified train/validation split.
 %
