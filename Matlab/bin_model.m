@@ -1,5 +1,5 @@
 function binModel = bin_model(Tchla, fracStruct, nbin)
-% BUILD_BIN_MODEL_FROM_TRAINING
+% BIN_MODEL
 %   Construct bin-based empirical relationships between PSC/PFT fractions
 %   and log10(Tchla) using weighted 4th-degree polynomial fits.
 %
