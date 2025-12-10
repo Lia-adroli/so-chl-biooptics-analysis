@@ -5,7 +5,7 @@ function stats = validate_model(T_val, model)
 %
 % Inputs:
 %   T_val - validation table from prepare_so_matchups (30% per year)
-%   model - struct from train_psc_pft_model (contains nnlsCoeff, gbmFull, binModel)
+%   model - struct from train_model (contains nnlsCoeff, gbmFull, binModel)
 %
 % Output:
 %   stats - struct array with fields:
