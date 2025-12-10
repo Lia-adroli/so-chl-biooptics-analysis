@@ -1,4 +1,4 @@
-# Southern Ocean Phytoplankton PSC & PFT Reconstruction (1998–2024)
+# Southern Ocean Phytoplankton Functional Types and Size-Class Diversity, Phenology, and Ecosystem Regime Shifts from Ocean Colour and Abundance-Based Diagnostics
 
 This repository contains the full data processing, model training, validation, and reconstruction workflow used to estimate phytoplankton size classes (PSCs) and phytoplankton functional types (PFTs) across the Southern Ocean (40–90°S) for the spring and summer period 1998–2024.
 
