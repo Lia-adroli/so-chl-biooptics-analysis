@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this function, please cite it as below."
+title: "Southern Ocean Phytoplankton Functional Types and Size-Class Diversity, Phenology, and Ecosystem Regime Shifts from Ocean Colour and Abundance-Based Diagnostics"
+version: 1.0.0
+doi: 10.5281/zenodo.17875100
+date-released: 2025-12-10
+
+authors:
+  - given-names: Nurmalia
+    family-names: Adroli
+    affiliation: Australian National University (ANU)
+
+repository-code: "https://github.com/Lia-adroli/so-chl-biooptics-analysis"
+
+keywords:
+  - phytoplankton
+  - Southern Ocean
+  - PSC
+  - PFT
+  - bio-optics
+  - ocean colour
+  - GBM
+  - NNLS
+
+license: MIT
+
+notes: 
+ Parts of the code structuring and debugging were supported by a large language model (ChatGPT, OpenAI). 
+All scientific decisions, data analysis, and validation were conducted and verified by the authors.
+
