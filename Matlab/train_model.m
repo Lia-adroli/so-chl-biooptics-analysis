@@ -4,7 +4,7 @@ function model = train_model(T_train, K)
 %   PSC/PFT fractions and a bin-based empirical model.
 %
 % Inputs:
-%   T_train - table from prepare_so_matchups (training subset)
+%   T_train - table from so_matchups (training subset)
 %   K       - number of folds for K-fold CV (default 5)
 %
 % Output:
