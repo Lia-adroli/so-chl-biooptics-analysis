@@ -1,4 +1,4 @@
-# Southern Ocean Regime Shift: Divergent Trends in Surface Phytoplankton Community Composition Using a Diagnostic Pigment Framework
+# Southern Ocean Phytoplankton Functional Type and Size-Class Reconstruction Code
 
 This repository contains the full data processing, model training, validation, and reconstruction workflow used to estimate phytoplankton size classes (PSCs) and phytoplankton functional types (PFTs) across the Southern Ocean (40–90°S) for the spring and summer period 1998–2024.
 
