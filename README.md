@@ -101,7 +101,7 @@ The approach integrates:
 
 If you use this code, please cite:
 
-Nurmalia Adroli, Alexander Hayward, Peter Strutton, & Michael Ellwood. (2026). Southern Ocean Phytoplankton Functional Type and Size-Class Reconstruction Code (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.20839101
+Adroli, N. (2026). Southern Ocean Phytoplankton Functional Type and Size-Class Reconstruction Code (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.20839101
 
 ---
 ## Contact
