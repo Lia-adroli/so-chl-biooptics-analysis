@@ -99,10 +99,9 @@ The approach integrates:
 ---
 ## Citation
 
-If you use this code or dataset, please cite:
+If you use this code, please cite:
 
-Adroli, N., Hayward, A., Strutton, P., & Ellwood, M. (2025).
-*Southern Ocean phytoplankton functional types and size-class diversity, phenology, and ecosystem regime shifts from ocean colour and abundance-based diagnostics (1998–2024).* Zenodo. https://doi.org/10.5281/zenodo.17875100
+Nurmalia Adroli, Alexander Hayward, Peter Strutton, & Michael Ellwood. (2026). Southern Ocean Phytoplankton Functional Type and Size-Class Reconstruction Code (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.20839101
 
 ---
 ## Contact
